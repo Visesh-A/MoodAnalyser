@@ -9,13 +9,17 @@
         }
         public string AnalyzeMood()
         {
+            if (this.message.Equals(string.Empty))
+            {
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY_MOOD, "Message is Empty");
+            }
             try
             {
-                if (message.ToLower().Contains("sad"))
+                if (this.message.ToLower().Contains("sad"))
                     return "SAD";
                 return "HAPPY";
             }
-            catch (MoodAnalyzerException)
+            catch (Exception)
             {
                 throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL_MOOD, "Message is Null");
             }
